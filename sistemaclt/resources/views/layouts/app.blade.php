@@ -9,22 +9,28 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger mb-4">{{-- primary --}}
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">Clinica la Luz Tacna</a>
+            <a class="navbar-brand" href="{{ url('/dashboard') }}">Clinica la Luz Tacna</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ url('/') }}">Inicio</a>
+                        <a class="nav-link active" href="{{ url('/dashboard') }}">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/especialidades') }}">Especialidades</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">MAS</a>
+                        <a class="nav-link" href="{{ url('/medicos') }}">Medicos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/personas') }}">Personas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mas...</a>
                     </li>
                 </ul>
             </div>
