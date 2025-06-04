@@ -10,10 +10,12 @@ class EspecialidadController extends Controller
 
     public function index()
     {
-        $especialidades = Especialidad::all();
+        //$especialidades = Especialidad::all();
+        $especialidades = Especialidad::paginate(9);
+
         return view('especialidades.index', compact('especialidades'));
     }
-    
+
     public function store(Request $request)
     {
         $request->validate([
@@ -23,7 +25,7 @@ class EspecialidadController extends Controller
             'nombre.required' => 'El nombre de la especialidad es obligatorio.',
             'nombre.string' => 'El nombre debe ser una cadena de texto válida.',
             'nombre.max' => 'El nombre no puede tener más de 255 caracteres.',
-            
+
             'codigo_ups.required' => 'El código UPS es obligatorio.',
             'codigo_ups.string' => 'El código UPS debe ser una cadena de texto.',
             'codigo_ups.size' => 'El código UPS debe tener exactamente 6 caracteres.',
@@ -44,7 +46,7 @@ class EspecialidadController extends Controller
         $especialidad = Especialidad::findOrFail($id);
         return response()->json($especialidad);
     }
-*/
+    */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -54,7 +56,7 @@ class EspecialidadController extends Controller
             'nombre.required' => 'El nombre de la especialidad es obligatorio.',
             'nombre.string' => 'El nombre debe ser una cadena de texto válida.',
             'nombre.max' => 'El nombre no puede tener más de 255 caracteres.',
-            
+
             'codigo_ups.required' => 'El código UPS es obligatorio.',
             'codigo_ups.string' => 'El código UPS debe ser una cadena de texto.',
             'codigo_ups.size' => 'El código UPS debe tener exactamente 6 caracteres.',
@@ -69,7 +71,7 @@ class EspecialidadController extends Controller
 
         return response()->json(['ok' => true]);
     }
-    
+
     public function toggle($id)
     {
         $esp = Especialidad::findOrFail($id);
@@ -77,7 +79,7 @@ class EspecialidadController extends Controller
         $esp->save();
         return response()->json(['ok' => true]);
     }
-    
+
 
 
 
@@ -172,7 +174,7 @@ class EspecialidadController extends Controller
 
 
 
-/*
+    /*
     public function index()
     {
         //
@@ -214,5 +216,4 @@ class EspecialidadController extends Controller
     }
 
 */
-
 }
