@@ -10,7 +10,7 @@ class PersonaController extends Controller
 {
     public function index()
     {
-        $personas = Persona::paginate(10); // Ajusta el número por página si lo deseas
+        $personas = Persona::paginate(10);
         return view('personas.index', compact('personas'));
     }
 
