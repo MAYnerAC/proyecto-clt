@@ -1,8 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+//
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EspecialidadController;
+use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\MedicoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,7 +24,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('especialidades', EspecialidadController::class)->except(['create', 'show']);
     /*Route::get('/especialidades/{id}/edit', [EspecialidadController::class, 'edit'])->name('especialidades.edit');*/
     Route::post('especialidades/{id}/toggle', [EspecialidadController::class, 'toggle'])->name('especialidades.toggle');
-    //
+
+    // Personas
+    Route::resource('personas', PersonaController::class)->except(['create', 'show']);
+
+    // Médicos
+    Route::resource('medicos', MedicoController::class)->except(['create', 'show']);
+    Route::post('medicos/{id}/toggle', [MedicoController::class, 'toggle'])->name('medicos.toggle');
 });
 
 require __DIR__ . '/auth.php';
