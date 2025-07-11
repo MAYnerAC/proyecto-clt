@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             User::create([
                 'name' => 'Admin',
                 'email' => 'admin@example.com',
-                'password' => '$2y$12$3qE1FjClO08lc4NOV8luU.E86lQtOLN35/0DOL181LWXXoqlsaNIm',
+                'password' => '$2y$12$3qE1FjClO08lc4NOV8luU.E86lQtOLN35/0DOL181LWXXoqlsaNIm', # 12345678
                 //'is_admin' => true,
             ]);
         }

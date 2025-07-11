@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Medico;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,6 +17,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(EspecialidadSeeder::class);
         $this->call([PersonaSeeder::class]);
+        $this->call([MedicoSeeder::class]);
 
         //
         $this->call(UserSeeder::class);
