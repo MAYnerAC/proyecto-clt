@@ -3,6 +3,11 @@
 @section('title', 'Listado de Personas')
 
 @section('content')
+
+    <div class="text-center mb-4">
+        <h2 class="text-uppercase fw-bold text-danger">GESTIÓN DE PERSONAS</h2>
+    </div>
+
     <div class="mb-3 text-end">
         <button class="btn btn-success btn-nueva-persona" data-bs-toggle="modal" data-bs-target="#modalPersona">
             + Nueva Persona

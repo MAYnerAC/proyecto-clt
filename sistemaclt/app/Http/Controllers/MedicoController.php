@@ -13,7 +13,7 @@ class MedicoController extends Controller
 
     public function index()
     {
-        $medicos = Medico::with(['persona', 'especialidad'])->paginate(10);
+        $medicos = Medico::with(['persona', 'especialidad'])->paginate(9);
         return view('medicos.index', compact('medicos'));
     }
 

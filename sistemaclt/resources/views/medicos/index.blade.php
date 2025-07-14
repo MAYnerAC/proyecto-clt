@@ -3,6 +3,11 @@
 @section('title', 'Listado de Médicos')
 
 @section('content')
+
+    <div class="text-center mb-4">
+        <h2 class="text-uppercase fw-bold text-danger">GESTIÓN DE MÉDICOS</h2>
+    </div>
+
     <div class="mb-3 text-end">
         <button class="btn btn-success btn-nuevo-medico" data-bs-toggle="modal" data-bs-target="#modalMedico">+ Nuevo
             Médico</button>
