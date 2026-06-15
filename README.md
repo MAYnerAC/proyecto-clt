@@ -17,19 +17,24 @@ Figura X. Diagrama de secuencia – Iniciar sesión
 ```mermaid
 sequenceDiagram
     autonumber
-    actor A1 as Administrador
-    participant UI_Login as UI Login
-    participant Iniciar_Sesion as Iniciar sesión
-    participant BD as Base de Datos
 
-    A1 ->> UI_Login: Acceder al formulario de inicio de sesión
-    UI_Login -->> A1: Mostrar formulario
-    A1 ->> UI_Login: Ingresar credenciales y enviar
-    UI_Login ->> Iniciar_Sesion: Enviar usuario y contraseña
-    Iniciar_Sesion ->> BD: Verificar credenciales
-    BD -->> Iniciar_Sesion: Respuesta (válida o inválida)
-    Iniciar_Sesion -->> UI_Login: Resultado de autenticación
-    UI_Login -->> A1: Mostrar panel principal o mensaje de error
+    actor Administrador
+
+    participant LoginView@{ "type": "boundary" }
+    participant AuthController@{ "type": "control" }
+    participant User@{ "type": "entity" }
+
+    Administrador ->> LoginView: Acceder al formulario de inicio de sesión
+    LoginView -->> Administrador: Mostrar formulario
+
+    Administrador ->> LoginView: Ingresar credenciales y enviar
+    LoginView ->> AuthController: Enviar usuario y contraseña
+
+    AuthController ->> User: Validar credenciales
+    User -->> AuthController: Retornar resultado de validación
+
+    AuthController -->> LoginView: Resultado de autenticación
+    LoginView -->> Administrador: Mostrar panel principal o mensaje de error
 
 ```
 
@@ -38,19 +43,30 @@ Figura X+1. Diagrama de secuencia – Gestionar especialidades
 ```mermaid
 sequenceDiagram
     autonumber
-    actor A1 as Administrador
-    participant UI_Especialidades as UI Especialidades
-    participant Gestionar_Especialidades as Gestionar especialidades
-    participant BD as Base de Datos
 
-    A1 ->> UI_Especialidades: Acceder al módulo de especialidades
-    UI_Especialidades -->> A1: Mostrar listado de especialidades
-    A1 ->> UI_Especialidades: Registrar nueva especialidad o editar existente
-    UI_Especialidades ->> Gestionar_Especialidades: Enviar datos del formulario
-    Gestionar_Especialidades ->> BD: Guardar o actualizar registro
-    BD -->> Gestionar_Especialidades: Confirmación de operación
-    Gestionar_Especialidades -->> UI_Especialidades: Retornar respuesta
-    UI_Especialidades -->> A1: Actualizar listado en la interfaz
+    actor Administrador
+
+    participant EspecialidadView@{ "type": "boundary" }
+    participant EspecialidadController@{ "type": "control" }
+    participant Especialidad@{ "type": "entity" }
+
+    Administrador ->> EspecialidadView: Acceder al módulo de especialidades
+    EspecialidadView ->> EspecialidadController: Solicitar listado de especialidades
+
+    EspecialidadController ->> Especialidad: Obtener especialidades registradas
+    Especialidad -->> EspecialidadController: Retornar listado
+
+    EspecialidadController -->> EspecialidadView: Mostrar listado de especialidades
+    EspecialidadView -->> Administrador: Visualizar especialidades registradas
+
+    Administrador ->> EspecialidadView: Registrar o editar especialidad
+    EspecialidadView ->> EspecialidadController: Enviar datos del formulario
+
+    EspecialidadController ->> Especialidad: Registrar o actualizar especialidad
+    Especialidad -->> EspecialidadController: Confirmar operación
+
+    EspecialidadController -->> EspecialidadView: Retornar resultado
+    EspecialidadView -->> Administrador: Actualizar listado de especialidades
 
 ```
 
@@ -59,19 +75,30 @@ Figura X+2. Diagrama de secuencia – Gestionar personas
 ```mermaid
 sequenceDiagram
     autonumber
-    actor A1 as Administrador
-    participant UI_Personas as UI Personas
-    participant Gestionar_Personas as Gestionar personas
-    participant BD as Base de Datos
 
-    A1 ->> UI_Personas: Acceder al módulo de personas
-    UI_Personas -->> A1: Mostrar listado de personas
-    A1 ->> UI_Personas: Registrar nueva persona o editar existente
-    UI_Personas ->> Gestionar_Personas: Enviar datos del formulario
-    Gestionar_Personas ->> BD: Guardar o actualizar registro
-    BD -->> Gestionar_Personas: Confirmación de operación
-    Gestionar_Personas -->> UI_Personas: Retornar respuesta
-    UI_Personas -->> A1: Actualizar listado en la interfaz
+    actor Administrador
+
+    participant PersonaView@{ "type": "boundary" }
+    participant PersonaController@{ "type": "control" }
+    participant Persona@{ "type": "entity" }
+
+    Administrador ->> PersonaView: Acceder al módulo de personas
+    PersonaView ->> PersonaController: Solicitar listado de personas
+
+    PersonaController ->> Persona: Obtener personas registradas
+    Persona -->> PersonaController: Retornar listado
+
+    PersonaController -->> PersonaView: Mostrar listado de personas
+    PersonaView -->> Administrador: Visualizar personas registradas
+
+    Administrador ->> PersonaView: Registrar o editar persona
+    PersonaView ->> PersonaController: Enviar datos del formulario
+
+    PersonaController ->> Persona: Registrar o actualizar persona
+    Persona -->> PersonaController: Confirmar operación
+
+    PersonaController -->> PersonaView: Retornar resultado
+    PersonaView -->> Administrador: Actualizar listado de personas
 
 ```
 
@@ -80,19 +107,30 @@ Figura X+3. Diagrama de secuencia – Gestionar médicos
 ```mermaid
 sequenceDiagram
     autonumber
-    actor A1 as Administrador
-    participant UI_Medicos as UI Médicos
-    participant Gestionar_Medicos as Gestionar médicos
-    participant BD as Base de Datos
 
-    A1 ->> UI_Medicos: Acceder al módulo de médicos
-    UI_Medicos -->> A1: Mostrar listado de médicos
-    A1 ->> UI_Medicos: Registrar nuevo médico o editar existente
-    UI_Medicos ->> Gestionar_Medicos: Enviar datos del formulario
-    Gestionar_Medicos ->> BD: Guardar o actualizar registro
-    BD -->> Gestionar_Medicos: Confirmación de operación
-    Gestionar_Medicos -->> UI_Medicos: Retornar respuesta
-    UI_Medicos -->> A1: Actualizar listado en la interfaz
+    actor Administrador
+
+    participant MedicoView@{ "type": "boundary" }
+    participant MedicoController@{ "type": "control" }
+    participant Medico@{ "type": "entity" }
+
+    Administrador ->> MedicoView: Ingresar al módulo de médicos
+    MedicoView ->> MedicoController: Solicitar información de médicos
+
+    MedicoController ->> Medico: Consultar médicos registrados
+    Medico -->> MedicoController: Devolver información solicitada
+
+    MedicoController -->> MedicoView: Presentar listado de médicos
+    MedicoView -->> Administrador: Visualizar información de médicos
+
+    Administrador ->> MedicoView: Registrar o modificar médico
+    MedicoView ->> MedicoController: Remitir datos del formulario
+
+    MedicoController ->> Medico: Procesar registro o actualización
+    Medico -->> MedicoController: Confirmar operación
+
+    MedicoController -->> MedicoView: Retornar resultado de la operación
+    MedicoView -->> Administrador: Actualizar listado de médicos
 
 ```
 
